@@ -1,0 +1,83 @@
+<div class = "container"  id = "full" >
+ 
+    <div class = "header">
+  <h3></h3>
+  </div>
+  
+  
+  
+ <div class = "row" style= "margin-top: 3% ">
+  
+  <div class="col-md-2 col-md-offset-4   col-sm-2 col-sm-offset-4  col-xs-4 col-xs-offset-2  temp">
+      <p class = "text-right details" id = "details">
+           Max {{user.main.temp_max-273.15 | number:'1.0-0'}}<sup><img src = "../../assets/cicono.png" width = "6" class = "cicon" id = "icon-image1"></sup>
+         Min {{user.main.temp_min-273.15 | number:'1.0-0'}}<sup><img src = "../../assets/cicono.png" width = "6" class = "cicon" id = "icon-image2"></sup></p>
+      
+      <h1 class = "text-right cel " id = "d1"> {{ kelvintoCelcius(user.main.temp) | number:'1.0-0'   }}<sup><img src = "../../assets/cicon.png" width = "30" class = "cicon" id ="ficon"></sup>
+     </h1>
+    </div>
+  <div class = "col-md-2  col-sm-2 col-xs-3 text-left tempicon">
+      <img src = "../../assets/{{user.weather[0].icon}}.png" width = "150" alt="{{user.weather[0].icon}}" >
+  </div>  
+</div>
+
+<div class = "row">
+    <div class ="col-md-12">
+        <h4 class="text-center" id = "d2"> 
+          Humidity : {{user.main.humidity }}%  <br>
+          Pressure : {{user.main.pressure | number:'1.0-0' }} mBar <br>
+          Wind : {{  speedinkmh(user.wind.speed) | number : '1.0-2' }} Km/h<sup>-1</sup>  <br>
+         
+        </h4> 
+      
+        </div>
+</div>
+ 
+
+<div class = "container-flex back"  id = "background">
+  <br>
+    <h1 class = 'text-center cel2' id = "d3">{{user.name}} {{user.sys.country}}</h1>
+   <h4 class = 'text-center date'  id = "d4">{{dateformat(user.dt)  | date:'EE MMMM dd' }} | {{ dateformat(user.dt) | date:'hh : mm' }} </h4> 
+   <div class = "row forcasttray"  >
+      <div class = "col-md-2 col-sm-2 text-center  col-xs-2" ></div>
+      <div class = "col-md-2  text-center col-sm-2  forcast col-xs-2 " >
+        <h4 class= "forcastname" ><b>{{user1.list[8].dt_txt | date : 'EEE'}}  </b></h4>
+        <img src="../../assets/{{user1.list[8].weather[0].icon}}.png" class="forcasticon" alt="{{user1.list[8].weather[0].icon}}"    >
+        <h4 class= "forcastname">{{ kelvintoCelcius(user1.list[8].main.temp) | number:'1.0-0'}}</h4>
+        <h4 class= "forcastname"> {{ user1.list[8].weather[0].main}}</h4>
+      </div>
+      <div class = "col-md-2 col-sm-2 text-center forcast col-xs-2" >
+          <h4  class= "forcastname" ><b> {{user1.list[16].dt_txt | date : 'EEE'}}  </b></h4>
+          <img src="../../assets/{{user1.list[16].weather[0].icon}}.png" class="forcasticon" alt="{{user1.list[16].weather[0].icon}}">
+          <h4 class= "forcastname"> {{ kelvintoCelcius(user1.list[16].main.temp) | number:'1.0-0'}}</h4>
+          <h4 class= "forcastname"> {{  user1.list[16].weather[0].main}}</h4>
+        </div>
+        <div class = "col-md-2 col-sm-2 text-center forcast col-xs-2" >
+            <h4 class= "forcastname" ><b> {{user1.list[24].dt_txt | date : 'EEE'}}  </b></h4>
+            <img src="../../assets/{{user1.list[24].weather[0].icon}}.png" class="forcasticon" alt="{{user1.list[24].weather[0].icon}}">
+            <h4 class= "forcastname"> {{ kelvintoCelcius(user1.list[24].main.temp) | number:'1.0-0'}}</h4>
+            <h4 class= "forcastname"> {{  user1.list[24].weather[0].main}}</h4>
+          </div>
+          <div class = "col-md-2 col-sm-2 text-center forcast col-xs-2" >
+              <h4 class= "forcastname" ><b> {{user1.list[32].dt_txt | date : 'EEE'}}  </b></h4>
+              <img src="../../assets/{{user1.list[32].weather[0].icon}}.png" class="forcasticon" alt="{{user1.list[32].weather[0].icon}}">
+              <h4 class= "forcastname"> {{ kelvintoCelcius(user1.list[32].main.temp) | number:'1.0-0'}}</h4>
+              <h4 class= "forcastname"> {{ user1.list[32].weather[0].main}}</h4>
+            
+            </div>
+              
+    </div>
+    <div class = "col-md-3 col-xs-2 col-sm-2 search" ></div>
+    <div class="col-md-4   col-sm-5   col-xs-5 text-right search">
+        <input type="text" #cityname class="form-control input-sm" placeholder="Colombo"  aria-describedby="basic-addon2">
+    </div>
+        <div class="col-md-2 text-left col-sm-3 col-xs-3 searchbtn input-group-append">
+          <button class="btn btn-info btn-sm btn-block search-btn" id="sbtn" type="button"  (click)="onClickMe(cityname.value)"><b>Search</b></button>
+        </div>
+    
+            
+  </div>
+
+ 
+</div>
+
